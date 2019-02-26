@@ -15,7 +15,7 @@ permalink: /:year/:month/:day/:title/
 
 # other links
 twitter_username: jagrosh
-facebook_username: jagrosh
+facebook_username:
 github_username: jagrosh
 email: j@gro.sh
 weibo_username:
@@ -28,10 +28,10 @@ description_footer: Thanks for checking out my blog!
 # comments
 # two ways to comment, only choose one, and use your own short name
 # 两种评论插件，选一个就好了，使用自己的 short_name
-duoshuo_shortname: #hygblog
+duoshuo_shortname: 
 disqus_shortname: jagrosh
 
-# statistic analysis 统计代码
+# statistic analysis
 # 百度统计 id，将统计代码替换为自己的百度统计id，即
 # hm.src = "//hm.baidu.com/hm.js?xxxxxxxxxxxx";
 # xxxxx字符串
