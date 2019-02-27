@@ -7,7 +7,7 @@
 
 # Site settings
 title: jagrosh's Blog
-brief-intro: My thoughts, ideas, and guides for anyone willing to read
+brief-intro: I write things sometimes
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://blog.jagrosh.com" # the base hostname & protocol for your site
 
@@ -36,7 +36,7 @@ disqus_shortname: jagroshs-blog
 # hm.src = "//hm.baidu.com/hm.js?xxxxxxxxxxxx";
 # xxxxx字符串
 baidu_tongji_id: 
-google_analytics_id: 
+google_analytics_id: UA-135279404-1
 
 # Build settings
 markdown: kramdown
