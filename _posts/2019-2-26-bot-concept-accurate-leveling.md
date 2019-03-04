@@ -17,16 +17,16 @@ I've discussed it [before](https://blog.jagrosh.com/2018/04/14/creating-and-grow
 
 ## Goal  
 ### Do:
-- Encourage users to interact with the server
-- Encourage users to contribute to conversations with relevant questions and comments
-- Give proper representation to positive contributors on the server  
+~ Encourage users to interact with the server  
+~ Encourage users to contribute to conversations with relevant questions and comments  
+~ Give proper representation to positive contributors on the server  
 ### Don't:
-- Encourage users to spam
-- Encourage users to say irrelevant or 'filler' messages
-- Encourage users to try to game/cheat the system
-- Interrupt conversations with "level-up" messages
-- Interrupt conversations with unecessary reactions or DMs
-- Require extra work/learning on the user's part  
+~ Encourage users to spam  
+~ Encourage users to say irrelevant or 'filler' messages  
+~ Encourage users to try to game/cheat the system  
+~ Interrupt conversations with "level-up" messages  
+~ Interrupt conversations with unecessary reactions or DMs  
+~ Require extra work/learning on the user's part  
 
 ---
 
@@ -47,7 +47,6 @@ So, how do other social media services solve this problem? Well, let's take a lo
 
 ---
 
-
 ## My Solution
 Drawing from things that the provided examples have in common, I've determined some elements that should be present in a solution.  
 ### Discrete Divisions of Conversation
@@ -56,33 +55,32 @@ Drawing from things that the provided examples have in common, I've determined s
   This solves a few of the goals. Namely, it prevents interrupting the conversation, as it only sends the user notifications _after_ they have finished participating.  
 ### Message Counting
   At some point, we need to take into consideration how much a person has typed. As already stated, just looking at number of messages sent or length of messages is a poor indication of contribution, but we can use it as a starting point. Specifically, we can look directly at the number of characters they sent, with a few caveats:  
-- Emotes, pings, and channel/role mentions get shortened to their visible text. These things contain IDs that take up 17-20 characters, but aren't actually typed by the user nor are representative of what the user typed.  
-- Some math: the average typing speed is around 40 words per minute. The average typing speed of a user on Discord is likely a bit higher than that, so we'll go with 60 wpm to be safe. The average length of a word is between 4 and 5 characters (varies by language), usually closer to 5. With a space between every word, we're looking at around 6 characters "per word" and 60 words per minute, or 360 characters typed per minute. Of course, since this is a conversation, we'd expect any single user to provide only one-half of the conversation, or less, leaving us at 180 characters per minute. We'll bump that up to 200 characters (to account for edge-cases and the occasional copy-paste) as our upper-limit for how many characters a single user should be able to type when participating in a conversation.  
-- Next, we want deleted messages to count _against_ the total. Whether a message is deleted by a mod or by the user, it likely means that it did not contribute to the conversation, so deleted messages will subtract characters from the total, with an additional 10% taken off. So, if a user sent 3 100-character messages, and deleted one of them, their total would be 300 - (100 * 1.1) = 300 - 110 = 190. (Note: if these 3 messages all happened within 1 minute, using our previous cap would limit the starting number to 200, and then after the subtraction would leave the user at 90).  
-- Finally, a flat amount should be subtracted from every message. This is to subtlely discourage people from breaking up their thoughts into a lot of small messages. This could be 5 or 10 characters per message (one or two words).
+~ Emotes, pings, and channel/role mentions get shortened to their visible text. These things contain IDs that take up 17-20 characters, but aren't actually typed by the user nor are representative of what the user typed.  
+~ Some math: the average typing speed is around 40 words per minute. The average typing speed of a user on Discord is likely a bit higher than that, so we'll go with 60 wpm to be safe. The average length of a word is between 4 and 5 characters (varies by language), usually closer to 5. With a space between every word, we're looking at around 6 characters "per word" and 60 words per minute, or 360 characters typed per minute. Of course, since this is a conversation, we'd expect any single user to provide only one-half of the conversation, or less, leaving us at 180 characters per minute. We'll bump that up to 200 characters (to account for edge-cases and the occasional copy-paste) as our upper-limit for how many characters a single user should be able to type when participating in a conversation.  
+~ Next, we want deleted messages to count _against_ the total. Whether a message is deleted by a mod or by the user, it likely means that it did not contribute to the conversation, so deleted messages will subtract characters from the total, with an additional 10% taken off. So, if a user sent 3 100-character messages, and deleted one of them, their total would be 300 - (100 * 1.1) = 300 - 110 = 190. (Note: if these 3 messages all happened within 1 minute, using our previous cap would limit the starting number to 200, and then after the subtraction would leave the user at 90).  
+~ Finally, a flat amount should be subtracted from every message. This is to subtlely discourage people from breaking up their thoughts into a lot of small messages. This could be 5 or 10 characters per message (one or two words).  
 [Sidenote: These numbers and times are estimates and would need to be tested and tweaked if this bot were to actually be developed.]  
 ### End of Conversation Review
   Alright, so we have a user's messages from a conversation, as well as the time they joined (became active) and left (became inactive). We also have a character-count score for what they typed. What next? Well, we'll want some minimum contribution required to be able to gain "points," such as at least 2 messages and at least 50 characters. If a person reached this threshhold, when they are considered "inactive," the bot will internally award them points for the number of characters typed (after the changes listed in the Message Counting section). If they received some incentive (more on this later), they will receive a DM explaining what they have received.  
   Also, either randomly, or dependent on the amount they contributed, they will be sent a DM with a poll, asking them about the other people they conversed with. They will be given the option to select one other user (or nobody) that they believe contributed positively to the conversation. If they do, both them and the other user will receive bonus points for their effort. This poll can also be ignored with no negative side-effects to earned points, but will reduce the chance of getting such a poll in the future.  
 ### Incentives
 Why should people even try to gain points? The administrators of a server should be able to set incentives at certain point levels, such as:  
-- Access to more channels
-- Colored roles
-- Hoisted roles
-- Roles with additional Discord permissions (External Emojis, Upload Files)  
+~ Access to more channels  
+~ Colored roles  
+~ Hoisted roles  
+~ Roles with additional Discord permissions (External Emojis, Upload Files)    
 Some other "custom" incentives might be:  
-- Ability to vote on message deletion (if X many people with this "permission" add a trash-can emoji to a message, delete the message)
-- Ability to "rep" other users once to give them a point multiplier  
+~ Ability to vote on message deletion (if X many people with this "permission" add a trash-can emoji to a message, delete the message)  
+~ Ability to "rep" other users once to give them a point multiplier  
 ### Self-Moderation
 Something that this entire system relies on is that non-contributing messages need to get deleted. Mostly, this can be handled by the moderators and auto-mod bots, but I would strongly-encourage (or require) that the ability to vote on message delete (outlined in Incentives above) be available to users of a certain point count.  
 ### TL;DR
 Basically:  
-- Break 'conversations' up per-user, and do calculation once a user has stopped participating
-- Count characters sent to determine points, with minimums, maximums, and other requirements
-  - Use these character restrictions to value quality over quantity (like Reddit)
-- Offer incentives for reaching certain point counts
-- Occasionally give a survey after a conversation for bonuses (like League of Legends)
-- With enough points, allow user-based moderation to make sure pointless messages get deleted (like StackExchange)  
+~ Break 'conversations' up per-user, and do calculation once a user has stopped participating
+~ Count characters sent to determine points, with minimums, maximums, and other requirements. Use these character restrictions to value quality over quantity (like Reddit)
+~ Offer incentives for reaching certain point counts
+~ Occasionally give a survey after a conversation for bonuses (like League of Legends)
+~ With enough points, allow user-based moderation to make sure pointless messages get deleted (like StackExchange)  
 
 ---
 
