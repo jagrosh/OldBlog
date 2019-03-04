@@ -76,10 +76,10 @@ Some other "custom" incentives might be:
 Something that this entire system relies on is that non-contributing messages need to get deleted. Mostly, this can be handled by the moderators and auto-mod bots, but I would strongly-encourage (or require) that the ability to vote on message delete (outlined in Incentives above) be available to users of a certain point count.  
 ### TL;DR
 Basically:  
-~ Break 'conversations' up per-user, and do calculation once a user has stopped participating
-~ Count characters sent to determine points, with minimums, maximums, and other requirements. Use these character restrictions to value quality over quantity (like Reddit)
-~ Offer incentives for reaching certain point counts
-~ Occasionally give a survey after a conversation for bonuses (like League of Legends)
+~ Break 'conversations' up per-user, and do calculation once a user has stopped participating  
+~ Count characters sent to determine points, with minimums, maximums, and other requirements. Use these character restrictions to value quality over quantity (like Reddit)  
+~ Offer incentives for reaching certain point counts  
+~ Occasionally give a survey after a conversation for bonuses (like League of Legends)  
 ~ With enough points, allow user-based moderation to make sure pointless messages get deleted (like StackExchange)  
 
 ---
